@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KANTIN SHODAP NIEH — makan enak, tetap masuk budget. Website kantin kampus untuk cari menu, atur pesanan, dan simulasi pembayaran.">
+  <title>KANTIN SHODAP NIEH — Makan enak, tetap masuk budget</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <header class="app-header">
+    <button class="brand" type="button" data-nav="home" aria-label="KANTIN SHODAP NIEH, ke beranda">
+      <img src="assets/logo.svg" alt="">
+      <span>
+        <span class="brand-name">KANTIN SHODAP NIEH</span>
+        <span class="brand-tag">Makan enak, tetap masuk budget.</span>
+      </span>
+    </button>
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <button type="button" data-nav="home">Home</button>
+      <button type="button" data-nav="menu">Menu</button>
+      <button type="button" data-nav="budget">Budget</button>
+      <button type="button" data-nav="event">Event</button>
+      <button type="button" data-nav="about">Info</button>
+    </nav>
+    <button class="header-cart" type="button" data-nav="cart" aria-label="Buka keranjang">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/>
+      </svg>
+      <span class="cart-count" id="cartCount" hidden>0</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="view is-active" id="view-home" aria-label="Beranda">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Pilih cepat. Bayar simpel. Makan tenang.</span>
+          <h1>Lagi lapar? Cari makan nggak perlu lama.</h1>
+          <p>Lihat menu, pilih makanan, dan atur pesanan sesuai budget kamu.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-nav="menu">Lihat Menu</button>
+            <button class="btn btn-secondary" type="button" data-nav="budget">Coba Budget Mode</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-chip"><strong>Menu kampus</strong><span>Harga kelihatan dari awal</span></div>
+          <div class="hero-chip"><strong>Budget Mode</strong><span>Kombinasi yang masuk uang</span></div>
+          <div class="hero-chip"><strong>Checkout cepat</strong><span>Tunai atau simulasi QRIS</span></div>
+          <div class="hero-chip"><strong>Struk digital</strong><span>Siap ditunjukkan ke kasir</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <h2>Mulai dari sini</h2>
+            <p>Empat langkah biar nggak muter-muter.</p>
+          </div>
+        </div>
+        <div class="cta-grid">
+          <button class="cta-card" type="button" data-nav="menu"><h3>Menu</h3><p>Cari nasi, mie, minuman.</p></button>
+          <button class="cta-card" type="button" data-nav="budget"><h3>Budget</h3><p>Isi nominal, dapat kombinasi.</p></button>
+          <button class="cta-card" type="button" data-nav="event"><h3>Event kuis</h3><p>Jawab cepat, dapat potongan.</p></button>
+          <button class="cta-card" type="button" data-nav="about"><h3>Info kantin</h3><p>Lokasi dan jam buka.</p></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <h2>Best seller</h2>
+            <p>Shortcut menu yang paling sering dipilih.</p>
+          </div>
+          <button class="btn btn-ghost" type="button" data-nav="menu">Lihat semua</button>
+        </div>
+        <div class="scroll-row" id="bestSellerRow"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <h2>Kategori menu</h2>
+            <p>Langsung filter sesuai yang kamu mau.</p>
+          </div>
+        </div>
+        <div class="cta-grid">
+          <button class="cta-card" type="button" data-category="Makanan"><h3>Makanan</h3><p>Nasi, mie, soto.</p></button>
+          <button class="cta-card" type="button" data-category="Minuman"><h3>Minuman</h3><p>Es teh sampai kopi.</p></button>
+          <button class="cta-card" type="button" data-category="Snack"><h3>Snack</h3><p>Gorengan dan roti bakar.</p></button>
+          <button class="cta-card" type="button" data-nav="menu" data-category="Semua"><h3>Semua</h3><p>Lihat katalog lengkap.</p></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <article class="info-card">
+          <h2>Informasi kantin</h2>
+          <p id="homeCanteenInfo" class="muted"></p>
+          <button class="btn btn-ghost" type="button" data-nav="about">Selengkapnya</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-menu" aria-label="Menu">
+      <h1>Mau makan apa?</h1>
+      <p class="muted" style="margin: 8px 0 16px;">Nama dan harga kelihatan tanpa buka halaman lain.</p>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+        <label class="visually-hidden" for="searchInput" style="position:absolute;left:-999px">Cari menu</label>
+        <input id="searchInput" type="search" placeholder="Cari nasi, mie, es teh..." autocomplete="off">
+      </div>
+      <div class="tabs" role="tablist" aria-label="Kategori">
+        <button class="tab is-active" type="button" data-filter="Semua">Semua</button>
+        <button class="tab" type="button" data-filter="Makanan">Makanan</button>
+        <button class="tab" type="button" data-filter="Minuman">Minuman</button>
+        <button class="tab" type="button" data-filter="Snack">Snack</button>
+      </div>
+      <div class="sort-row">
+        <span class="muted" id="menuResultCount"></span>
+        <label>
+          <span class="visually-hidden" style="position:absolute;left:-999px">Urutkan</span>
+          <select id="sortSelect" aria-label="Urutkan menu">
+            <option value="default">Urutan default</option>
+            <option value="price-asc">Harga terendah</option>
+            <option value="price-desc">Harga tertinggi</option>
+            <option value="name">Nama A–Z</option>
+          </select>
+        </label>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty" id="menuEmpty" hidden>
+        <h3>Menu yang kamu cari belum ketemu.</h3>
+        <p class="muted">Coba kata lain, atau reset pencarian.</p>
+        <button class="btn btn-secondary" type="button" id="resetSearch">Reset pencarian</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-budget" aria-label="Budget Mode">
+      <h1>Mau makan berapa?</h1>
+      <p class="muted" style="margin: 8px 0 16px;">Masukkan budget kamu, biar kami carikan kombinasinya.</p>
+      <div class="field">
+        <label for="budgetInput">Budget (rupiah)</label>
+        <input id="budgetInput" type="number" min="0" step="1000" value="15000" inputmode="numeric">
+      </div>
+      <div class="tabs" id="budgetChips">
+        <button class="chip is-active" type="button" data-budget="10000">Rp10K</button>
+        <button class="chip" type="button" data-budget="15000">Rp15K</button>
+        <button class="chip" type="button" data-budget="20000">Rp20K</button>
+        <button class="chip" type="button" data-budget="25000">Rp25K</button>
+      </div>
+      <button class="btn btn-primary btn-block" type="button" id="calcBudget">Cari kombinasi</button>
+      <div class="section" id="budgetResults"></div>
+    </section>
+
+    <section class="view" id="view-event" aria-label="Event kuis">
+      <span class="eyebrow">Event kantin</span>
+      <h1 style="margin-top:8px">Jawab cepat, dapat potongan.</h1>
+      <p class="muted" style="margin: 8px 0 16px;">3 pertanyaan. Jawab benar untuk membuka voucher.</p>
+      <div id="quizPanel"></div>
+    </section>
+
+    <section class="view" id="view-cart" aria-label="Keranjang">
+      <div class="section-head">
+        <h1>Keranjang</h1>
+        <button class="btn btn-ghost" type="button" id="clearCartBtn">Kosongkan</button>
+      </div>
+      <div id="cartList" class="cart-list"></div>
+      <div class="empty" id="cartEmpty" hidden>
+        <h3>Keranjangmu masih kosong.</h3>
+        <p class="muted">Yuk, cari makanan dulu.</p>
+        <button class="btn btn-primary" type="button" data-nav="menu">Cari Makanan</button>
+      </div>
+      <div class="summary-sheet" id="cartSummary" hidden>
+        <div class="summary-row"><span id="cartItemCount"></span></div>
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal"></span></div>
+        <div class="summary-row"><span>Diskon</span><span id="cartDiscount"></span></div>
+        <div class="summary-row total"><span>Total</span><span id="cartTotal"></span></div>
+        <button class="btn btn-primary btn-block" type="button" data-nav="checkout">Lanjut Checkout</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-checkout" aria-label="Checkout">
+      <h1>Checkout</h1>
+      <p class="muted" style="margin: 8px 0 20px;">1. Pesanan · 2. Data pembeli · 3. Pembayaran</p>
+      <article class="info-card" style="margin-bottom:16px">
+        <h2>Pesanan</h2>
+        <div id="checkoutItems"></div>
+        <div class="summary-row"><span>Subtotal</span><span id="coSubtotal"></span></div>
+        <div class="summary-row"><span>Diskon</span><span id="coDiscount"></span></div>
+        <div class="summary-row total"><span>Total</span><span id="coTotal"></span></div>
+      </article>
+      <div class="field">
+        <label for="customerName">Nama pembeli</label>
+        <input id="customerName" type="text" autocomplete="name" placeholder="Contoh: Raka">
+        <span class="error-text" id="nameError" hidden>Nama perlu diisi sebelum lanjut.</span>
+      </div>
+      <div class="field">
+        <label for="voucherCode">Voucher (opsional)</label>
+        <input id="voucherCode" type="text" placeholder="KUIS10" autocapitalize="characters">
+        <span class="error-text" id="voucherError" hidden></span>
+      </div>
+      <button class="btn btn-secondary btn-block" type="button" id="applyVoucher">Terapkan voucher</button>
+      <div class="section">
+        <h2>Pembayaran</h2>
+        <p class="muted" style="margin: 6px 0 12px;">Simulasi lokal. Tidak terhubung ke payment gateway.</p>
+        <div class="pay-grid">
+          <button class="pay-card" type="button" data-pay="cash">
+            <strong>Tunai</strong>
+            <span class="muted">Masukkan uang, sistem hitung kembalian.</span>
+          </button>
+          <button class="pay-card" type="button" data-pay="qris">
+            <strong>QRIS</strong>
+            <span class="muted">Simulasi scan QR, bukan pembayaran bank.</span>
+          </button>
+        </div>
+        <span class="error-text" id="payError" hidden>Pilih metode pembayaran dulu.</span>
+      </div>
+      <button class="btn btn-primary btn-block" type="button" id="goPayment" style="margin-top:16px">Lanjut bayar</button>
+    </section>
+
+    <section class="view" id="view-payment" aria-label="Pembayaran">
+      <h1 id="paymentTitle">Pembayaran</h1>
+      <p class="muted" id="paymentTotalLabel"></p>
+      <div id="cashPanel" hidden>
+        <div class="field" style="margin-top:16px">
+          <label for="cashInput">Uang yang dibayar</label>
+          <input id="cashInput" type="number" min="0" step="1000" inputmode="numeric" placeholder="20000">
+          <span id="cashHint" class="muted"></span>
+          <span class="error-text" id="cashError" hidden></span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" id="payCash">Bayar tunai</button>
+      </div>
+      <div id="qrisPanel" hidden>
+        <div class="qris-box" style="margin-top:16px">
+          <span class="status-pill" id="qrisStatus">Menunggu pembayaran</span>
+          <img src="assets/qris-demo.svg" alt="Simulasi kode QRIS KANTIN SHODAP NIEH">
+          <p class="muted">Ini simulasi QRIS. Tidak diproses bank atau payment gateway.</p>
+          <button class="btn btn-primary btn-block" type="button" id="simulateQris">Simulasikan Pembayaran</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-receipt" aria-label="Struk">
+      <article class="receipt" id="receiptPaper">
+        <header>
+          <img src="assets/logo.svg" alt="">
+          <h1>KANTIN SHODAP NIEH</h1>
+          <p>Kampus 3 UIN SAGA</p>
+          <p class="muted">Pesanan berhasil dibuat!</p>
+        </header>
+        <div id="receiptBody"></div>
+        <svg class="receipt-qr" id="receiptQr" viewBox="0 0 21 21" aria-label="Kode QR struk"></svg>
+        <p style="text-align:center;margin-top:12px">Terima kasih sudah makan di KANTIN SHODAP NIEH!</p>
+        <p class="muted" style="text-align:center">Tinggal tunjukkan struk ini saat mengambil pesanan.</p>
+      </article>
+      <div class="receipt-actions">
+        <button class="btn btn-primary" type="button" id="printReceipt">Cetak Struk</button>
+        <button class="btn btn-secondary" type="button" data-nav="menu">Pesan Lagi</button>
+        <button class="btn btn-ghost" type="button" data-nav="home">Kembali ke Home</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-about" aria-label="Informasi kantin">
+      <h1>Informasi kantin</h1>
+      <article class="info-card" style="margin-top:16px">
+        <h2 id="aboutName"></h2>
+        <p id="aboutLocation"></p>
+        <p id="aboutHours"></p>
+        <p id="aboutContact"></p>
+        <p class="muted" id="aboutNote"></p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>KANTIN SHODAP NIEH · Kampus 3 UIN SAGA · Buka setiap hari · Tutup pas kiamat</p>
+    <p>Simulasi pemesanan lokal. BTW disini fake semua ya, login, atau payment gateway semua bagian dari simulasi bray.</p>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <button type="button" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7v9H4z"/></svg>
+      Home
+    </button>
+    <button type="button" data-nav="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="7" height="7" rx="1"/><rect x="13" y="5" width="7" height="7" rx="1"/><rect x="4" y="14" width="7" height="7" rx="1"/><rect x="13" y="14" width="7" height="7" rx="1"/></svg>
+      Menu
+    </button>
+    <button type="button" data-nav="budget">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+      Budget
+    </button>
+    <button type="button" data-nav="event">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V4m8 3V4M4 11h16M6 20h12a2 2 0 002-2V8H4v10a2 2 0 002 2z"/></svg>
+      Event
+    </button>
+    <button type="button" data-nav="cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/></svg>
+      Cart
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal-backdrop" id="productModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="btn btn-ghost" type="button" data-close-modal>Tutup</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="confirmModal" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <h2 id="confirmTitle">Kosongkan semua isi keranjang?</h2>
+      <p class="muted">Item yang sudah dipilih akan hilang.</p>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button class="btn btn-secondary btn-block" type="button" data-close-confirm>Batal</button>
+        <button class="btn btn-danger btn-block" type="button" id="confirmClear">Kosongkan</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas class="confetti" id="confetti" hidden></canvas>
+
+  <audio id="paymentSuccessAudio" preload="auto" aria-hidden="true">
+    <source src="assets/audio/payment-success.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="payment-celebration" id="paymentCelebration" hidden aria-hidden="true">
+    <div class="payment-celebration-card">
+      <div class="payment-burst" aria-hidden="true">✦</div>
+      <strong>Pembayaran berhasil!</strong>
+      <span>Shodap-nya siap 😋</span>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

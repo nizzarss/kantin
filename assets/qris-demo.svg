@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Simulasi kode QRIS">
+  <rect width="240" height="240" fill="#fff"/>
+  <g fill="#222">
+    <rect x="16" y="16" width="72" height="72"/>
+    <rect x="24" y="24" width="56" height="56" fill="#fff"/>
+    <rect x="36" y="36" width="32" height="32"/>
+    <rect x="152" y="16" width="72" height="72"/>
+    <rect x="160" y="24" width="56" height="56" fill="#fff"/>
+    <rect x="172" y="36" width="32" height="32"/>
+    <rect x="16" y="152" width="72" height="72"/>
+    <rect x="24" y="160" width="56" height="56" fill="#fff"/>
+    <rect x="36" y="172" width="32" height="32"/>
+    <rect x="104" y="16" width="12" height="12"/>
+    <rect x="128" y="16" width="12" height="12"/>
+    <rect x="104" y="40" width="12" height="12"/>
+    <rect x="116" y="52" width="12" height="12"/>
+    <rect x="104" y="76" width="24" height="12"/>
+    <rect x="152" y="104" width="12" height="12"/>
+    <rect x="176" y="104" width="24" height="12"/>
+    <rect x="208" y="116" width="12" height="24"/>
+    <rect x="104" y="104" width="24" height="24"/>
+    <rect x="136" y="112" width="12" height="12"/>
+    <rect x="104" y="140" width="12" height="12"/>
+    <rect x="128" y="140" width="36" height="12"/>
+    <rect x="104" y="164" width="12" height="12"/>
+    <rect x="128" y="176" width="12" height="24"/>
+    <rect x="152" y="164" width="12" height="12"/>
+    <rect x="176" y="152" width="12" height="12"/>
+    <rect x="200" y="152" width="24" height="12"/>
+    <rect x="152" y="188" width="24" height="12"/>
+    <rect x="188" y="176" width="12" height="36"/>
+    <rect x="164" y="212" width="24" height="12"/>
+    <rect x="104" y="200" width="12" height="24"/>
+    <rect x="128" y="212" width="12" height="12"/>
+  </g>
+  <rect x="100" y="100" width="40" height="40" rx="6" fill="#E53935"/>
+  <text x="120" y="125" text-anchor="middle" font-size="10" font-family="Arial" fill="#fff" font-weight="700">KIN</text>
+</svg>
